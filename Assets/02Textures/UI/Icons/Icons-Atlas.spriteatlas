@@ -23,11 +23,11 @@ SpriteAtlas:
     platformSettings: []
     packingSettings:
       serializedVersion: 2
-      padding: 4
+      padding: 8
       blockOffset: 1
       allowAlphaSplitting: 0
-      enableRotation: 1
-      enableTightPacking: 1
+      enableRotation: 0
+      enableTightPacking: 0
       enableAlphaDilation: 0
     secondaryTextureSettings: {}
     variantMultiplier: 1
@@ -38,6 +38,7 @@ SpriteAtlas:
     cachedData: {fileID: 0}
   m_MasterAtlas: {fileID: 0}
   m_PackedSprites:
+  - {fileID: 21300000, guid: d44fe8306ab4c0842a40e9ac6a32d08a, type: 3}
   - {fileID: 21300000, guid: 3c2fa450957637d4faf044b68e54f30a, type: 3}
   - {fileID: 21300000, guid: 6cc63881489896f4cbd25df80b708f3c, type: 3}
   - {fileID: 21300000, guid: 940aa1a1ed7cd7b4fbc1bd55121c2d22, type: 3}
@@ -50,10 +51,12 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 290577d3f70a5794bb03ae9b84ff5612, type: 3}
   - {fileID: 21300000, guid: 3fc6dbd33dcdbb044ab6fb6d5d7ad8c9, type: 3}
   - {fileID: 21300000, guid: c3cc98640654a524283c3bd57685cc5f, type: 3}
+  - {fileID: 21300000, guid: 91a940742f84d694c9f20a076cc7c4c5, type: 3}
   - {fileID: 21300000, guid: 52926ee4702017b4d8e5eaf9eaffed55, type: 3}
   - {fileID: 21300000, guid: 018bfff4389b1aa4a9b1f4c28394fd36, type: 3}
   - {fileID: 21300000, guid: b6857045182503c4299235a19df6cf00, type: 3}
   - {fileID: 21300000, guid: 7febb855d829d0e42b25d6278e51608b, type: 3}
+  - {fileID: 21300000, guid: fbf537b6a25ec744a94a30358d51258f, type: 3}
   - {fileID: 21300000, guid: b17ee1c69ba6f2e4785fff95ffece7c2, type: 3}
   - {fileID: 21300000, guid: 2c6fbec829f9eef4dae30e9ea14cd913, type: 3}
   - {fileID: 21300000, guid: 493dbc1a9183a0a458d066f446ec30b9, type: 3}
@@ -77,6 +80,7 @@ SpriteAtlas:
   - {fileID: 21300000, guid: 3aceab3f29304234a9e3f64ac09ea278, type: 3}
   - {fileID: 21300000, guid: 82f684cf83e1c2849a38616722e4e6e6, type: 3}
   m_PackedSpriteNamesToIndex:
+  - ui_icon_watch_ads
   - UI_icon_gold
   - UI_Icons_Rifle_Points
   - UI_Icons_Vest_Points
@@ -89,10 +93,12 @@ SpriteAtlas:
   - ui_icon_render_t_cons_molotov
   - UI_icon_chest_silver_nolight
   - ui_icon_render_cons_grenade_m26
+  - UI_icon_cash_2
   - UI_Icon_Renders_tier1_shotgun
   - ui_icon_mle_bayonet_summer_vice
   - UI_Icons_Pistol_Points_
   - UI_Icons_SMG_Points
+  - ui_icon_trash
   - UI_Icons_Submachine_Points
   - UI_icon_chest_super_nolight
   - UI_icon_chest_Bronze_nolight
