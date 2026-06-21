@@ -1,0 +1,60 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Spins-Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: e4e5fa61da1f17247b1d3e09bfb70887, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: afcc6663919ce77488bf34a518f10b38, type: 3}
+  - {fileID: 21300000, guid: 7e5c9a24c9c93a14d82e0f1d6f9a859e, type: 3}
+  - {fileID: 21300000, guid: ed0de425a267a064baa5951e3a3f3f05, type: 3}
+  - {fileID: 21300000, guid: c939455639313fc49a5ae45777d02c14, type: 3}
+  - {fileID: 21300000, guid: 73ebad664c8385a4993bec0dbf880fc2, type: 3}
+  - {fileID: 21300000, guid: 526a99a7cfc063d4fa89154ca06e086a, type: 3}
+  - {fileID: 21300000, guid: 4db95f0cf38ee474e83d14d67f941040, type: 3}
+  - {fileID: 21300000, guid: 359c88ecd2d7d4842940561f930d594e, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_spin_golden_base
+  - ui_spin_silver_base
+  - ui_spin_generic_button
+  - ui_spin_bronze_indicator
+  - ui_spin_silver_indicator
+  - ui_spin_bronze_base
+  - ui_spin_golden_indicator
+  - ui_spin_generic_button_2
+  m_RenderDataMap: {}
+  m_Tag: Spins-Atlas
+  m_IsVariant: 0

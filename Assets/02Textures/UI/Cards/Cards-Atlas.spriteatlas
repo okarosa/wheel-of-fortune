@@ -1,0 +1,66 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!687078895 &4343727234628468602
+SpriteAtlas:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: Cards-Atlas
+  m_EditorData:
+    serializedVersion: 2
+    textureSettings:
+      serializedVersion: 2
+      anisoLevel: 1
+      compressionQuality: 50
+      maxTextureSize: 2048
+      textureCompression: 0
+      filterMode: 1
+      generateMipMaps: 0
+      readable: 0
+      crunchedCompression: 0
+      sRGB: 1
+    platformSettings: []
+    packingSettings:
+      serializedVersion: 2
+      padding: 4
+      blockOffset: 1
+      allowAlphaSplitting: 0
+      enableRotation: 1
+      enableTightPacking: 1
+      enableAlphaDilation: 0
+    secondaryTextureSettings: {}
+    variantMultiplier: 1
+    packables:
+    - {fileID: 102900000, guid: ed04e5051747f0847bc6b29840fd1031, type: 3}
+    bindAsDefault: 1
+    isAtlasV2: 0
+    cachedData: {fileID: 0}
+  m_MasterAtlas: {fileID: 0}
+  m_PackedSprites:
+  - {fileID: 21300000, guid: a4ab9d12f8e2920449aff8890c6889de, type: 3}
+  - {fileID: 21300000, guid: 04ede252d23a4a04b964f960ca618de7, type: 3}
+  - {fileID: 21300000, guid: ff393d333c7367342a659f68ef26a102, type: 3}
+  - {fileID: 21300000, guid: 11e625b379b9b3c4cbdb4b39cca75b03, type: 3}
+  - {fileID: 21300000, guid: 6faaa7e3c072b694199938d7d6d34513, type: 3}
+  - {fileID: 21300000, guid: 5a946317061429c489dc05659264447c, type: 3}
+  - {fileID: 21300000, guid: aa4471185dc5edd43b4fa6ec4762acbb, type: 3}
+  - {fileID: 21300000, guid: 9883a2baccacab3428baf5dd24edf9e4, type: 3}
+  - {fileID: 21300000, guid: 93f878ebd53134f4a82ce27880288443, type: 3}
+  - {fileID: 21300000, guid: c58c70edc7cfbe148949f297ae3818f6, type: 3}
+  - {fileID: 21300000, guid: 78ec7ffe44f38b549afd017027c5b0c7, type: 3}
+  m_PackedSpriteNamesToIndex:
+  - ui_card_panel_zone_bg
+  - ui_card_zone_map_frame
+  - ui_card_frame_gardient
+  - ui_card_icon_death
+  - ui_card_panel_zone_current
+  - ui_card_panel_zone_super
+  - ui_card_panel_zone_coming
+  - ui_card_panel_zone_current_white
+  - ui_card_panel_zone_white
+  - ui_card_frame_12px_neutral
+  - ui_card_frame_4px_zone
+  m_RenderDataMap: {}
+  m_Tag: Cards-Atlas
+  m_IsVariant: 0
