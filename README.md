@@ -29,7 +29,7 @@ I played the Card Game mode in Critical Strike for a while to understand how the
 
 | 20:9 | 16:9 | 4:3 |
 |:---:|:---:|:---:|
-| ![20:9](Screenshots/20_9.png) | ![16:9](Screenshots/16_9.png) | ![4:3](Screenshots/4_3.png) |
+| ![20:9](Screenshots/20_9.jpg) | ![16:9](Screenshots/16_9.jpg) | ![4:3](Screenshots/4_3.jpg) |
 
 ---
 
