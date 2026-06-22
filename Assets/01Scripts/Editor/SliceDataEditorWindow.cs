@@ -7,7 +7,6 @@ public class SliceDataEditorWindow : EditorWindow
 
     private WheelSliceData _target;
     private string _assetPath;
-    private bool _customName;
     private RewardNameEnum _selectedEnum;
     private string _customNameValue;
     private int _amount;
@@ -39,13 +38,11 @@ public class SliceDataEditorWindow : EditorWindow
         if (System.Enum.TryParse<RewardNameEnum>(name, true, out var parsed) && parsed != RewardNameEnum.None)
         {
             _selectedEnum = parsed;
-            _customName = false;
             _customNameValue = "";
         }
         else
         {
             _selectedEnum = RewardNameEnum.None;
-            _customName = true;
             _customNameValue = name;
         }
     }
@@ -73,14 +70,7 @@ public class SliceDataEditorWindow : EditorWindow
         _selectedEnum = (RewardNameEnum)EditorGUILayout.EnumPopup("Reward Name", _selectedEnum);
 
         if (_selectedEnum == RewardNameEnum.None)
-        {
             _customNameValue = EditorGUILayout.TextField("Custom Name", _customNameValue);
-            _customName = true;
-        }
-        else
-        {
-            _customName = false;
-        }
 
         _amount = EditorGUILayout.IntField("Amount", Mathf.Max(1, _amount));
         _icon = (Sprite)EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false);

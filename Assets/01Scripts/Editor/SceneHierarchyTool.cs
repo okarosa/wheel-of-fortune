@@ -11,7 +11,6 @@ public class SceneHierarchyTool
     public static void SetupHierarchy()
     {
         Undo.IncrementCurrentGroup();
-        string groupName = "Scene Hierarchy Setup";
 
         var root = GetOrCreateRoot();
         var folderM = GetOrCreateChild(root, "_Managers");
