@@ -6,7 +6,9 @@
 <img src="https://img.shields.io/badge/SOLID-OOP-6C63FF?style=for-the-badge"/>
 
 # Wheel of Fortune
-### Vertigo Games - Game Developer Demo
+### Vertigo Games - Game Developer Case
+
+![](Screenshots/20_9.jpg)
 
 </div>
 
@@ -119,6 +121,14 @@ At each zone the player spins a wheel containing reward slices and a bomb. Landi
 
 ---
 
+## UI Panels
+
+| Game Over | Reward Complete | Special Offer |
+|:---:|:---:|:---:|
+| ![](Screenshots/GameOver_UI_01.jpg) | ![](Screenshots/RewardComplete_UI_01.jpg) | ![](Screenshots/SpecialOffer_UI_01.jpg) |
+
+---
+
 ## Stack
 
-Unity 2021 LTS — DOTween — TextMeshPro — ScriptableObjects — Sprite Atlas — PlayerPrefs
+Unity 2021 LTS - DOTween - TextMeshPro - ScriptableObjects - Sprite Atlas - PlayerPrefs
