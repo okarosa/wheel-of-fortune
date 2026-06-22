@@ -27,6 +27,7 @@ public class ZoneProgressBar : MonoBehaviour
 
     private void Awake()
     {
+        GameServices.Instance?.Register(this);
         FindReferences();
     }
 

@@ -24,6 +24,7 @@ public class BombEffect : MonoBehaviour
             return;
         }
         Instance = this;
+        GameServices.Instance?.Register(this);
 
         if (bombCanvasGroup == null)
             bombCanvasGroup = GetComponent<CanvasGroup>();

@@ -13,6 +13,7 @@ public class DemoSettings : MonoBehaviour
 
     private void Awake()
     {
+        GameServices.Instance?.Register(this);
         if (!PlayerPrefs.HasKey("TotalCoins")) PlayerPrefs.SetInt("TotalCoins", startingCoins);
         if (!PlayerPrefs.HasKey("TotalMoney")) PlayerPrefs.SetInt("TotalMoney", startingMoney);
 

@@ -5,15 +5,15 @@ public class RewardCollector : MonoBehaviour
 {
     public static RewardCollector Instance { get; private set; }
 
-    public int TotalCoins      { get; set; }
-    public int TotalMoney      { get; private set; }
-    public int RifleCount      { get; private set; }
-    public int ArmorCount      { get; private set; }
-    public int KnifeCount      { get; private set; }
-    public int PistolCount     { get; private set; }
+    public int TotalCoins { get; set; }
+    public int TotalMoney { get; private set; }
+    public int RifleCount { get; private set; }
+    public int ArmorCount { get; private set; }
+    public int KnifeCount { get; private set; }
+    public int PistolCount { get; private set; }
     public int SubmachineCount { get; private set; }
-    public int PumpgunCount    { get; private set; }
-    public int SniperCount     { get; private set; }
+    public int PumpgunCount { get; private set; }
+    public int SniperCount { get; private set; }
 
     public List<WheelSliceData> CollectedRewards { get; private set; }
 
@@ -24,6 +24,7 @@ public class RewardCollector : MonoBehaviour
     {
         if (Instance != null && Instance != this) { Destroy(gameObject); return; }
         Instance = this;
+        GameServices.Instance?.Register(this);
         CollectedRewards = new List<WheelSliceData>();
 
         _adders = new Dictionary<string, System.Action<int>>(System.StringComparer.OrdinalIgnoreCase)

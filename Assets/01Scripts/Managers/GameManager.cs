@@ -45,6 +45,7 @@ public class GameManager : MonoBehaviour
             return;
         }
         Instance = this;
+        GameServices.Instance?.Register(this);
     }
 
     private void Start()

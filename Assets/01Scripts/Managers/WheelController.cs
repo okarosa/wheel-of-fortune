@@ -30,6 +30,11 @@ public class WheelController : MonoBehaviour
 
     public bool AutoSpinEnabled { get; set; }
 
+    private void Awake()
+    {
+        GameServices.Instance?.Register(this);
+    }
+
     private void Start()
     {
         if (wheelValueImage == null)
@@ -157,7 +162,7 @@ public class WheelController : MonoBehaviour
         if (_isSpinning) return;
         if (GameManager.Instance.CurrentState != GameState.Idle) return;
 
-        AudioManager.Instance.Play("sfx_revolver_spin");
+        GameServices.Instance.AudioManager?.Play("sfx_revolver_spin");
         GameManager.Instance.SetState(GameState.Spinning);
         _isSpinning = true;
 
@@ -171,9 +176,9 @@ public class WheelController : MonoBehaviour
         StopIdleRotation();
 
         _targetSliceIndex = Random.Range(0, SliceCount);
-        int   extraSpins     = Random.Range(5, 10);
-        float totalRotation  = extraSpins * 360f + (360f - _targetSliceIndex * DegreesPerSlice) + finalRotationOffset;
-        float duration       = Random.Range(minSpinDuration, maxSpinDuration);
+        int extraSpins = Random.Range(5, 10);
+        float totalRotation = extraSpins * 360f + (360f - _targetSliceIndex * DegreesPerSlice) + finalRotationOffset;
+        float duration = Random.Range(minSpinDuration, maxSpinDuration);
 
         if (wheelItemsContainer != null)
         {
@@ -197,20 +202,20 @@ public class WheelController : MonoBehaviour
         if (landed.isBomb)
         {
             GameManager.Instance.SetState(GameState.Bomb);
-            UIManager.Instance?.ShowBombPanel();
-            BombEffect.Instance?.PlayBombEffect();
+            GameServices.Instance.Panels?.ShowBombPanel();
+            GameServices.Instance.BombEffect?.PlayBombEffect();
             DisableAutoSpin();
         }
         else
         {
-            RewardCollector.Instance.AddReward(landed);
-            UIManager.Instance?.AddRewardItem(landed);
+            GameServices.Instance.RewardCollector?.AddReward(landed);
+            GameServices.Instance.RewardFeed?.AddRewardItem(landed);
             GameManager.Instance.SetState(GameState.Result);
 
             if (!GameManager.Instance.IsRewardComplete())
             {
                 int fromZone = GameManager.Instance.CurrentZone;
-                UIManager.Instance?.AnimateZoneProgress(fromZone, fromZone + 1);
+                GameServices.Instance.HUD?.AnimateZoneProgress(fromZone, fromZone + 1);
             }
 
             DOVirtual.DelayedCall(0.5f, () =>
@@ -223,7 +228,7 @@ public class WheelController : MonoBehaviour
                 }
                 else
                 {
-                    UIManager.Instance?.ShowRewardComplete();
+                    GameServices.Instance.Panels?.ShowRewardComplete();
                     GameManager.Instance.SetState(GameState.RewardComplete);
                     DisableAutoSpin();
                 }
@@ -234,7 +239,7 @@ public class WheelController : MonoBehaviour
     private void DisableAutoSpin()
     {
         AutoSpinEnabled = false;
-        UIManager.Instance?.UpdateAutoSpinButton(false);
+        GameServices.Instance.HUD?.UpdateAutoSpinButton(false);
     }
 
     private void AnimateSpinResult()
