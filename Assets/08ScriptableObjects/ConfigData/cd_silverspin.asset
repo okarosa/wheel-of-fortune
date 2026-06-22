@@ -1,0 +1,38 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a93aedc8478c97e408236db1637f6e24, type: 3}
+  m_Name: cd_silverspin
+  m_EditorClassIdentifier: 
+  wheelName: silver
+  rewards:
+  - {fileID: 11400000, guid: 2cf75712d10676041b02b733dd439dc3, type: 2}
+  - {fileID: 11400000, guid: 3020ef1e947c52b41b1d0aa8d789d09f, type: 2}
+  - {fileID: 11400000, guid: 7f30d28708ec0374fb185c5cebb5e7c1, type: 2}
+  - {fileID: 11400000, guid: c4c95f5314139ba44baa206c154635c1, type: 2}
+  - {fileID: 11400000, guid: 433ff9ac103ba21488bac8892ddd036a, type: 2}
+  - {fileID: 11400000, guid: f0aeb3d373281734b9d74d973f0ad0aa, type: 2}
+  - {fileID: 11400000, guid: a6c5c6f61c274cc4ba3d6a17bffd32b0, type: 2}
+  - {fileID: 11400000, guid: 1cee4465f11a09e4083cdbc39cd69010, type: 2}
+  - {fileID: 11400000, guid: d500339bb4c5eb84680bd5731f46d412, type: 2}
+  - {fileID: 11400000, guid: b71f2b68f55d63b41b522a7d53d793d4, type: 2}
+  - {fileID: 11400000, guid: 19db9d99325a07c45b977c57107e1a60, type: 2}
+  - {fileID: 11400000, guid: 7ba1f771a09e75e4a848a58ab2934a9b, type: 2}
+  - {fileID: 11400000, guid: 61cb42aee60991648bfaccd23c889799, type: 2}
+  - {fileID: 11400000, guid: 6e921766903999d43b1557f4b1956849, type: 2}
+  - {fileID: 11400000, guid: e6537a6c61da91b4c8286d00e16d6831, type: 2}
+  - {fileID: 11400000, guid: 12b2bebfb1e406b48b30ca5471dfe7e1, type: 2}
+  - {fileID: 11400000, guid: d5cd0b9974af6e34fa1c72c6e4c6895d, type: 2}
+  hasBomb: 0
+  wheelBackground: {fileID: 21300000, guid: 7e5c9a24c9c93a14d82e0f1d6f9a859e, type: 3}
+  wheelPointerSprite: {fileID: 21300000, guid: 73ebad664c8385a4993bec0dbf880fc2, type: 3}
+  wheelBgColor: {r: 1, g: 1, b: 1, a: 1}
+  backgroundMusic: {fileID: 8300000, guid: 8058b37ada74799438e4eb694f7a50a6, type: 3}
