@@ -207,8 +207,11 @@ public class WheelController : MonoBehaviour
             UIManager.Instance?.AddRewardItem(landed);
             GameManager.Instance.SetState(GameState.Result);
 
-            int fromZone = GameManager.Instance.CurrentZone;
-            UIManager.Instance?.AnimateZoneProgress(fromZone, fromZone + 1);
+            if (!GameManager.Instance.IsRewardComplete())
+            {
+                int fromZone = GameManager.Instance.CurrentZone;
+                UIManager.Instance?.AnimateZoneProgress(fromZone, fromZone + 1);
+            }
 
             DOVirtual.DelayedCall(0.5f, () =>
             {
