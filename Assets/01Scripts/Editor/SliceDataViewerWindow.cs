@@ -145,7 +145,7 @@ public class SliceDataViewerWindow : EditorWindow
         GUILayout.Label("Amount", EditorStyles.boldLabel, GUILayout.Width(60));
         GUILayout.Label("Bomb", EditorStyles.boldLabel, GUILayout.Width(42));
         GUILayout.Label("Path", EditorStyles.boldLabel);
-        GUILayout.Label("", GUILayout.Width(72));
+        GUILayout.Label("", GUILayout.Width(120));
         GUILayout.EndHorizontal();
     }
 
@@ -191,6 +191,12 @@ public class SliceDataViewerWindow : EditorWindow
             Selection.activeObject = data;
         }
 
+        if (GUILayout.Button("Edit", GUILayout.Width(48)))
+        {
+            SliceDataEditorWindow.Open(entry.path);
+            GUIUtility.ExitGUI();
+        }
+
         if (GUILayout.Button("Delete", GUILayout.Width(48)))
         {
             if (EditorUtility.DisplayDialog("Delete Slice Data",
@@ -217,7 +223,7 @@ public class SliceDataViewerWindow : EditorWindow
         return spin switch
         {
             "BRONZE" => new Color(0.58f, 0.34f, 0.11f),
-            "SILVER" => Color.green,
+            "SILVER" => new Color(0.55f, 0.55f, 0.60f),
             "GOLD" => new Color(1f, 0.76f, 0.055f),
             _ => Color.gray
         };

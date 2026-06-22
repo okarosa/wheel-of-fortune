@@ -7,5 +7,4 @@ public class WheelSliceData : ScriptableObject
     public string rewardName;
     public int rewardAmount;
     public bool isBomb;
-    public Color sliceColor = Color.white;
 }

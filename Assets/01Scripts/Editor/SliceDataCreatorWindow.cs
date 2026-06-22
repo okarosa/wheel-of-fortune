@@ -5,12 +5,13 @@ using System.IO;
 public class SliceDataCreatorWindow : EditorWindow
 {
     private enum SpinType { Bronze, Silver, Gold }
+    private enum RewardNameEnum { None, coin, money, armor, knife, rifle, pistol, submachine, shotgun, sniper, @case }
+
     private SpinType _spinType = SpinType.Bronze;
-    private string _rewardName = "coin";
+    private RewardNameEnum _rewardNameEnum = RewardNameEnum.coin;
+    private string _customName = "";
     private int _amount = 10;
     private Sprite _icon;
-    private bool _isBomb;
-    private Color _sliceColor = Color.white;
     private Vector2 _scroll;
 
     [MenuItem("Tools/Wheel of Fortune/Slice Data Creator", priority = 110)]
@@ -18,6 +19,13 @@ public class SliceDataCreatorWindow : EditorWindow
     {
         var w = GetWindow<SliceDataCreatorWindow>(true, "Slice Data Creator", true);
         w.minSize = new Vector2(380, 320);
+    }
+
+    private string ResolveName()
+    {
+        if (_rewardNameEnum == RewardNameEnum.None)
+            return _customName.ToLowerInvariant().Trim();
+        return _rewardNameEnum.ToString().ToLowerInvariant();
     }
 
     private void OnGUI()
@@ -32,33 +40,20 @@ public class SliceDataCreatorWindow : EditorWindow
         _spinType = (SpinType)EditorGUILayout.EnumPopup("Spin Type", _spinType);
         GUILayout.Space(5);
 
-        _isBomb = EditorGUILayout.Toggle("Is Bomb", _isBomb);
+        _rewardNameEnum = (RewardNameEnum)EditorGUILayout.EnumPopup("Reward Name", _rewardNameEnum);
 
-        if (!_isBomb)
-        {
-            _rewardName = EditorGUILayout.TextField("Reward Name", _rewardName).ToLowerInvariant().Trim();
-            _amount = EditorGUILayout.IntField("Amount", Mathf.Max(1, _amount));
-            _icon = (Sprite)EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false);
-        }
-        else
-        {
-            GUI.enabled = false;
-            _rewardName = "bomb";
-            _amount = 0;
-            _icon = null;
-            EditorGUILayout.TextField("Reward Name", "bomb");
-            EditorGUILayout.IntField("Amount", 0);
-            EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false);
-            GUI.enabled = true;
-        }
+        if (_rewardNameEnum == RewardNameEnum.None)
+            _customName = EditorGUILayout.TextField("Custom Name", _customName);
 
-        _sliceColor = EditorGUILayout.ColorField("Slice Color", _sliceColor);
+        _amount = EditorGUILayout.IntField("Amount", Mathf.Max(1, _amount));
+        _icon = (Sprite)EditorGUILayout.ObjectField("Icon", _icon, typeof(Sprite), false);
 
         GUILayout.Space(10);
         DrawPreview();
         GUILayout.Space(10);
 
-        GUI.enabled = CanCreate();
+        var canCreate = !string.IsNullOrEmpty(ResolveName()) && _amount > 0;
+        GUI.enabled = canCreate;
         if (GUILayout.Button("Create Slice Data", GUILayout.Height(36)))
             CreateSliceData();
         GUI.enabled = true;
@@ -69,8 +64,8 @@ public class SliceDataCreatorWindow : EditorWindow
     private void DrawPreview()
     {
         var prefix = GetPrefix();
-        var namePart = _isBomb ? "bomb" : $"{_rewardName}_{_amount}";
-        var fileName = $"{prefix}_{namePart}.asset";
+        var rewardName = ResolveName();
+        var fileName = $"{prefix}_{rewardName}_{_amount}.asset";
         var folder = GetTargetFolder();
 
         var boxStyle = new GUIStyle(EditorStyles.helpBox);
@@ -79,19 +74,12 @@ public class SliceDataCreatorWindow : EditorWindow
         GUILayout.Label("Preview", bold);
         GUILayout.Label($"  File: {fileName}");
         GUILayout.Label($"  Path: {folder}/{fileName}");
-        if (!_isBomb && _icon != null)
+        if (_icon != null)
         {
             var rt = GUILayoutUtility.GetRect(48, 48);
             GUI.DrawTexture(rt, _icon.texture, ScaleMode.ScaleToFit);
         }
         GUILayout.EndVertical();
-    }
-
-    private bool CanCreate()
-    {
-        if (!_isBomb && (string.IsNullOrEmpty(_rewardName) || _amount <= 0))
-            return false;
-        return true;
     }
 
     private void CreateSliceData()
@@ -104,8 +92,8 @@ public class SliceDataCreatorWindow : EditorWindow
         }
 
         var prefix = GetPrefix();
-        var namePart = _isBomb ? "bomb" : $"{_rewardName}_{_amount}";
-        var assetName = $"{prefix}_{namePart}";
+        var rewardName = ResolveName();
+        var assetName = $"{prefix}_{rewardName}_{_amount}";
         var path = $"{folder}/{assetName}.asset";
 
         if (File.Exists(path))
@@ -117,11 +105,9 @@ public class SliceDataCreatorWindow : EditorWindow
         }
 
         var data = CreateInstance<WheelSliceData>();
-        data.rewardName = _isBomb ? "bomb" : _rewardName;
-        data.rewardAmount = _isBomb ? 0 : _amount;
-        data.isBomb = _isBomb;
-        data.icon = _isBomb ? null : _icon;
-        data.sliceColor = _sliceColor;
+        data.rewardName = rewardName;
+        data.rewardAmount = _amount;
+        data.icon = _icon;
         data.name = assetName;
 
         AssetDatabase.CreateAsset(data, path);
@@ -133,11 +119,10 @@ public class SliceDataCreatorWindow : EditorWindow
 
         Debug.Log($"[SliceDataCreator] Created: {path}");
 
-        if (!_isBomb)
-        {
-            _amount++;
-            Repaint();
-        }
+        OfferAddToConfig(data);
+
+        _amount++;
+        Repaint();
     }
 
     private string GetPrefix()
@@ -161,5 +146,41 @@ public class SliceDataCreatorWindow : EditorWindow
             SpinType.Gold => $"{basePath}/GoldSpin",
             _ => $"{basePath}/BronzeSpin"
         };
+    }
+
+    private void OfferAddToConfig(WheelSliceData slice)
+    {
+        if (!EditorUtility.DisplayDialog("Add to Config?",
+            $"Add '{slice.name}' to the {_spinType} wheel config's rewards list?", "Add", "Skip"))
+            return;
+
+        var configPath = _spinType switch
+        {
+            SpinType.Bronze => "Assets/08ScriptableObjects/ConfigData/cd_bronzespin.asset",
+            SpinType.Silver => "Assets/08ScriptableObjects/ConfigData/cd_silverspin.asset",
+            SpinType.Gold => "Assets/08ScriptableObjects/ConfigData/cd_goldspin.asset",
+            _ => "Assets/08ScriptableObjects/ConfigData/cd_bronzespin.asset"
+        };
+
+        var config = AssetDatabase.LoadAssetAtPath<WheelConfigData>(configPath);
+        if (config == null)
+        {
+            EditorUtility.DisplayDialog("Error", $"Config not found at:\n{configPath}", "OK");
+            return;
+        }
+
+        var list = new System.Collections.Generic.List<WheelSliceData>();
+        if (config.rewards != null)
+            list.AddRange(config.rewards);
+
+        list.Add(slice);
+        config.rewards = list.ToArray();
+
+        EditorUtility.SetDirty(config);
+        AssetDatabase.SaveAssets();
+        AssetDatabase.Refresh();
+
+        EditorUtility.DisplayDialog("Done", $"Added to {config.name}.rewards ({list.Count} total).", "OK");
+        EditorGUIUtility.PingObject(config);
     }
 }
