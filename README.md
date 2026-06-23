@@ -16,7 +16,7 @@
 
 ## Design Approach
 
-I played the Card Game mode in Critical Strike for a while to understand how the UI looks and feels. I tried to match the fonts, colors, and animations as close as possible to Critical Strike's style. I also made sure to use all the assets from the demo content pack nothing was left out.
+I played the Card Game mode in Critical Strike for a while to understand how the UI looks and feels. I tried to match the fonts, colors, and animations as close as possible to Critical Strike's style. I also made sure to use all the assets from the demo content pack.
 
 ---
 
@@ -50,21 +50,60 @@ At each zone the player spins a wheel containing reward slices and a bomb. Landi
 
 ## Architecture
 
+```mermaid
+graph TD
+    GS[GameServices\nservice locator]
+
+    GS --> GM[GameManager\nstate machine]
+    GS --> AM[AudioManager\nSFX + music]
+    GS --> RC[RewardCollector\nsession + persistence]
+    GS --> DS[DemoSettings\ndev tooling]
+    GS --> ZP[ZoneProgressBar\nzone UI]
+    GS --> WC[WheelController\nspin logic]
+
+    GS --> UM[UIManager\nfacade]
+    UM --> HH[HUDHandler\nzone + coin display]
+    UM --> PC[PanelController\nbomb + revive panels]
+    UM --> RF[RewardFeedHandler\nreward list + fly FX]
+
+    GS --> SO[ScriptableObjects]
+    SO --> WSD[WheelSliceData]
+    SO --> WCD[WheelConfigData]
+    SO --> BCC[BuyCoinConfig]
+```
+
+### Managers
+
 | Class | Responsibility |
 |---|---|
+| `GameServices` | Central service locator - `Register<T>()` / `Get<T>()` / `TryGet<T>()` |
 | `GameManager` | State machine: Idle / Spinning / Result / Bomb / RewardComplete |
-| `WheelController` | Spin logic, slice randomization, idle rotation, auto-spin |
-| `UIManager` | Panel management, DOTween animations, number formatting |
-| `RewardCollector` | Session reward tracking, PlayerPrefs persistence |
-| `AudioManager` | SFX dictionary, per-wheel-tier background music |
-| `ZoneProgressBar` | Scrollable zone indicator, color-coded tier fills |
+| `AudioManager` | Dictionary-keyed SFX bank, per-wheel-tier looping background music |
+| `RewardCollector` | Session reward tracking, PlayerPrefs persistence on cash-out |
+| `DemoSettings` | Dev tooling - configurable starting values, PlayerPrefs reset |
+| `ZoneProgressBar` | Scrollable zone indicator, color-coded tier fills, animated transitions |
+
+### Controllers
+
+| Class | Responsibility |
+|---|---|
+| `WheelController` | Spin physics, slice randomization, idle rotation, auto-spin, result flow |
+
+### UI Handlers
+
+| Class | Responsibility |
+|---|---|
+| `UIManager` | Facade - holds serialized UI references, delegates to handlers, button wiring |
+| `HUDHandler` | Zone info, coin display, exit/auto-spin button state, character idle animation |
+| `PanelController` | Bomb / Game Over / Reward Complete / Buy Coin panel animations and flow |
+| `RewardFeedHandler` | Reward list item creation, coin fly and collect icon effects, smooth scroll |
 
 ### ScriptableObjects
 
 | Class | Responsibility |
 |---|---|
 | `WheelSliceData` | Icon, display name, reward amount, bomb flag |
-| `WheelConfigData` | Reward pool, wheel visuals, background music clip |
+| `WheelConfigData` | Reward pool array, wheel visuals, hasBomb flag, background music clip |
 | `BuyCoinConfig` | Three-tier coin purchase configuration |
 
 ---
@@ -72,14 +111,14 @@ At each zone the player spins a wheel containing reward slices and a bomb. Landi
 ## Technical Details
 
 **Code Quality**
-- SOLID principles applied throughout each manager has a single clear responsibility; wheel and reward configurations are open for extension without modifying existing classes
+- SOLID principles applied throughout - each manager has a single clear responsibility; wheel and reward configurations are open for extension without modifying existing classes
 - No coroutine-based animation anywhere; all motion handled exclusively through DOTween
-- All button references resolved automatically via `OnValidate` no Unity Editor onClick or event references
+- All button references resolved automatically via `OnValidate` - no Unity Editor onClick or event references
 
 **UI & Layout**
 - Canvas Scaler set to Expand mode, anchors and pivots verified across 20:9, 16:9, and 4:3
 - TextMeshPro used for all text elements
-- Sliced Sprites on all Image components no stretching at any resolution
+- Sliced Sprites on all Image components - no stretching at any resolution
 - `RaycastTarget` and `Maskable` disabled on all non-interactive images
 - Animator components placed on dedicated child transforms, never on root
 - Dynamic UI elements follow `_value` suffix convention; hierarchy naming follows root-to-specific pattern (e.g. `ui_image_spin_silver`)
@@ -131,4 +170,4 @@ At each zone the player spins a wheel containing reward slices and a bomb. Landi
 
 ## Stack
 
-Unity 2021 LTS - DOTween - TextMeshPro - ScriptableObjects - Sprite Atlas - PlayerPrefs
+Unity 2021 LTS — DOTween — TextMeshPro — ScriptableObjects — Sprite Atlas — PlayerPrefs
