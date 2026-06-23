@@ -181,6 +181,7 @@ public class UIManager : MonoBehaviour
 
     private void OnDestroy()
     {
+        DOTween.Kill(this);
         if (GameManager.Instance != null)
             GameManager.Instance.UnregisterStateChanged(OnGameStateChanged);
         if (exitButton != null) exitButton.onClick.RemoveAllListeners();

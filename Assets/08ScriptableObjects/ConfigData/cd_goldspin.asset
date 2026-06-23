@@ -12,16 +12,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a93aedc8478c97e408236db1637f6e24, type: 3}
   m_Name: cd_goldspin
   m_EditorClassIdentifier: 
-  wheelName: gold
   rewards:
   - {fileID: 11400000, guid: d625ef7438c1eb346a0084eff15fca43, type: 2}
   - {fileID: 11400000, guid: 7e8c0287d92ca134486abc6dde40aa86, type: 2}
+  - {fileID: 11400000, guid: ad92a40a7da4f0e4a95bbeeedc3d3e45, type: 2}
   - {fileID: 11400000, guid: 9e2b33176c514da45b7f6eb954131156, type: 2}
   - {fileID: 11400000, guid: be35206c56047744f86215c89f6ce6a2, type: 2}
   - {fileID: 11400000, guid: 13956f22504fefa46bd2099ef120a209, type: 2}
+  - {fileID: 11400000, guid: ffc83046dc174c14d81de7721f216630, type: 2}
+  - {fileID: 11400000, guid: b7f0de8d1df441a40975ee8cb20e78bf, type: 2}
   - {fileID: 11400000, guid: 1d90d28b7e06e2f46841a3229dea6d49, type: 2}
-  - {fileID: 11400000, guid: 7cbe2c402cbbb7c43985de86d01d57d0, type: 2}
-  - {fileID: 11400000, guid: 988bd46f8be23a94b8174a8aa4b941fb, type: 2}
   - {fileID: 11400000, guid: a989adb4039874f4381109afe39d89ba, type: 2}
   hasBomb: 0
   wheelBackground: {fileID: 21300000, guid: afcc6663919ce77488bf34a518f10b38, type: 3}

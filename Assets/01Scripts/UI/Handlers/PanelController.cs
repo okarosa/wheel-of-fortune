@@ -4,6 +4,7 @@ using UnityEngine.SceneManagement;
 using TMPro;
 using DG.Tweening;
 
+
 public class PanelController
 {
     private UIManager _ui;
@@ -103,12 +104,14 @@ public class PanelController
     public void OnExitClicked()
     {
         GameServices.Instance.RewardCollector?.CashOut();
+        DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
     public void OnGiveUpClicked()
     {
         GameServices.Instance.RewardCollector?.ResetAll();
+        DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
@@ -162,6 +165,7 @@ public class PanelController
     public void OnRestartClicked()
     {
         GameServices.Instance.RewardCollector?.CashOut();
+        DOTween.KillAll();
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 
