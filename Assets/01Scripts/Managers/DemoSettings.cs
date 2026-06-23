@@ -2,9 +2,6 @@ using UnityEngine;
 
 public class DemoSettings : MonoBehaviour
 {
-    public int startingCoins = 100;
-    public int startingMoney = 1000;
-
     private static readonly string[] WeaponKeys =
     {
         "TotalRifle", "TotalPistol", "TotalSubmachine",
@@ -14,28 +11,42 @@ public class DemoSettings : MonoBehaviour
     private void Awake()
     {
         GameServices.Instance?.Register(this);
-        if (!PlayerPrefs.HasKey("TotalCoins")) PlayerPrefs.SetInt("TotalCoins", startingCoins);
-        if (!PlayerPrefs.HasKey("TotalMoney")) PlayerPrefs.SetInt("TotalMoney", startingMoney);
-
-        foreach (var key in WeaponKeys)
-            if (!PlayerPrefs.HasKey(key)) PlayerPrefs.SetInt(key, 0);
-
+        if (!PlayerPrefs.HasKey("TotalCoins"))
+            PlayerPrefs.SetInt("TotalCoins", 75);
+        if (!PlayerPrefs.HasKey("TotalMoney"))
+            PlayerPrefs.SetInt("TotalMoney", 1000);
         PlayerPrefs.Save();
     }
 
-    public void ClearAllPlayerPrefs()
+    public static int GetCoins() => PlayerPrefs.GetInt("TotalCoins", 100);
+    public static int GetMoney() => PlayerPrefs.GetInt("TotalMoney", 1000);
+
+    public static void ApplyDefaults(int coins, int money)
+    {
+        SetIfMissing("TotalCoins", coins);
+        SetIfMissing("TotalMoney", money);
+        PlayerPrefs.Save();
+    }
+
+    private static void SetIfMissing(string key, int value)
+    {
+        if (!PlayerPrefs.HasKey(key))
+            PlayerPrefs.SetInt(key, value);
+    }
+
+    public static void ClearAll()
     {
         PlayerPrefs.DeleteAll();
         PlayerPrefs.Save();
         Debug.Log("[DemoSettings] All PlayerPrefs cleared.");
     }
 
-    public void ResetDefaults()
+    public static void SetDefaults(int coins, int money)
     {
-        ClearAllPlayerPrefs();
-        PlayerPrefs.SetInt("TotalCoins", startingCoins);
-        PlayerPrefs.SetInt("TotalMoney", startingMoney);
+        ClearAll();
+        PlayerPrefs.SetInt("TotalCoins", coins);
+        PlayerPrefs.SetInt("TotalMoney", money);
         PlayerPrefs.Save();
-        Debug.Log($"[DemoSettings] Reset to defaults: Coins={startingCoins}, Money={startingMoney}");
+        Debug.Log($"[DemoSettings] Set defaults: Coins={coins}, Money={money}");
     }
 }
