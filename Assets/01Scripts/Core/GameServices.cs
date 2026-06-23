@@ -54,7 +54,6 @@ public class GameServices : MonoBehaviour
         RegisterIfMissing<AudioManager>();
         RegisterIfMissing<UIManager>();
         RegisterIfMissing<RewardCollector>();
-        RegisterIfMissing<BombEffect>();
         RegisterIfMissing<DemoSettings>();
         RegisterIfMissing<ZoneProgressBar>();
     }
@@ -102,7 +101,6 @@ public class GameServices : MonoBehaviour
     public WheelController WheelController => Get<WheelController>();
     public AudioManager AudioManager => Get<AudioManager>();
     public RewardCollector RewardCollector => Get<RewardCollector>();
-    public BombEffect BombEffect => Get<BombEffect>();
     public DemoSettings DemoSettings => Get<DemoSettings>();
     public ZoneProgressBar ZoneProgressBar => Get<ZoneProgressBar>();
     public HUDHandler HUD => Get<HUDHandler>();

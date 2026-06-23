@@ -203,7 +203,6 @@ public class WheelController : MonoBehaviour
         {
             GameManager.Instance.SetState(GameState.Bomb);
             GameServices.Instance.Panels?.ShowBombPanel();
-            GameServices.Instance.BombEffect?.PlayBombEffect();
             DisableAutoSpin();
         }
         else
