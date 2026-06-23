@@ -45,7 +45,7 @@ At each zone the player spins a wheel containing reward slices and a bomb. Landi
 | 1–4, 6–9… | Normal | Bronze | Yes |
 | 5, 10, 15… | Safe | Silver | No |
 | 30 | Super | Gold | No |
-| 60 | Final | Gold | No |
+| 60 | Super | Gold | No |
 
 ---
 
