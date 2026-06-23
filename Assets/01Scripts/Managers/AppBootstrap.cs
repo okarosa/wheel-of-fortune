@@ -17,6 +17,5 @@ public class AppBootstrap : MonoBehaviour
         if (GameServices.Instance != null) return;
         var go = new GameObject("_Managers");
         go.AddComponent<GameServices>();
-        DontDestroyOnLoad(go);
     }
 }

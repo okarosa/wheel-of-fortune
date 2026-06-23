@@ -28,7 +28,6 @@ public class AudioManager : MonoBehaviour
         }
         Instance = this;
         GameServices.Instance?.Register(this);
-        DontDestroyOnLoad(gameObject);
 
         _clipMap = new Dictionary<string, AudioClip>();
         if (entries != null)

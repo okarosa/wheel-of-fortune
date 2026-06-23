@@ -25,7 +25,6 @@ public class GameServices : MonoBehaviour
             return;
         }
         _instance = this;
-        DontDestroyOnLoad(gameObject);
         name = "_Managers";
     }
 
@@ -64,14 +63,17 @@ public class GameServices : MonoBehaviour
     {
         if (_services.ContainsKey(typeof(T))) return;
         var service = FindObjectOfType<T>();
-        if (service != null) Register(service);
+        if (service == null)
+        {
+            service = new GameObject(typeof(T).Name).AddComponent<T>();
+            service.transform.SetParent(transform);
+        }
+        Register(service);
     }
 
     public void Register<T>(T service) where T : class
     {
-        var type = typeof(T);
-        if (!_services.ContainsKey(type))
-            _services[type] = service;
+        _services[typeof(T)] = service;
     }
 
     public void Unregister<T>() where T : class
