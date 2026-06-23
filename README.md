@@ -16,7 +16,8 @@
 
 ## Design Approach
 
-I played the Card Game mode in Critical Strike for a while to understand how the UI looks and feels. I tried to match the fonts, colors, and animations as close as possible to Critical Strike's style. I also made sure to use all the assets from the demo content pack.
+I played the Card Game mode in Critical Strike for a while to understand how the UI looks and feels. I tried to match the fonts, colors, and animations as close as possible to Critical Strike's style. I also made sure to use all the assets from the demo content pack.<br></br>
+On the code side, I used a service locator to keep the managers separate from each other. All animations run through DOTween, no coroutines. The wheel content is data-driven with ScriptableObjects, and I built custom EditorGUI tools so things like slice data and player settings can be changed directly in the Unity Editor without touching any code.
 
 ---
 
